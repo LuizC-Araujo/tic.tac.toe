@@ -1,9 +1,13 @@
 package luiz.araujo.tictactoe;
 
+import luiz.araujo.tictactoe.core.Game;
+
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Game g = new Game();
+		
+		g.play();
 
 	}
 
