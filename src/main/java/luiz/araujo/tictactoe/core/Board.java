@@ -48,10 +48,63 @@ public class Board {
 		int i = move.getI();
 		int j = move.getJ();
 		
-		matrix[i][j] = player.getSymbol();
+		//TODO validar movimentos
 		
-		//TODO checar se o jogador venceu
+		matrix[i][j] = player.getSymbol();
+	
+		return checkRows(player) || checkCols(player) || checkDiagonal1(player) || checkDiagonal(player);
+	}
+	
+	private boolean checkRows(Player player) {
+		for (int i = 0; i < 3; i++) {
+			if(checkrRow(i, player)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	private boolean checkCols(Player player) {
+		for (int j = 0; j < 3; j++) {
+			if(checkrCol(j, player)) {
+				return true;
+			}
+		}
 		return false;
 	}
 	
-}
+	private boolean checkrRow(int i, Player player) {
+		char symbol = player.getSymbol();
+		for(int j = 0; j < 3; j++) {
+			if(matrix[i][j] != symbol)
+				return false;
+		}
+		return true;
+	}
+	
+	private boolean checkrCol(int j, Player player) {
+		char symbol = player.getSymbol();
+		for(int i = 0; i < 3; i++) {
+			if(matrix[i][j] != symbol)
+				return false;
+		}
+		return true;
+	}
+	
+	private boolean checkDiagonal1(Player player) {
+		char symbol = player.getSymbol();
+		for(int i = 0; i < 3; i++) {
+			if(matrix[i][i] != symbol)
+				return false;
+		}
+		return true;
+	}
+	
+	private boolean checkDiagonal(Player player) {
+		char symbol = player.getSymbol();
+		for(int i = 2, j = 0; i >= 0; i--, j++) {
+			if(matrix[i][j] != symbol)
+				return false;
+		}
+		return true;
+	}
+}	
